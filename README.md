@@ -6,10 +6,6 @@ Frontend: React, CSS, Axios
 
 Backend / Auth: Firebase Authentication
 
-Database / Hosting: Firebase Firestore & Firebase Hosting
-
-API: TMDB API
-
 🔑 Features
 ✅ User Authentication (Sign Up / Sign In)
 ✅ Movie categories (Trending, Top Rated, Originals, etc.)
