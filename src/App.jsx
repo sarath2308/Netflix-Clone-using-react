@@ -5,6 +5,9 @@ import Login from '../src/pages/Login/Login'
 import { Player } from './pages/Player/Player'
 import { onAuthStateChanged } from 'firebase/auth'
 import firebase from './firebase'
+import { ToastContainer,toast } from 'react-toastify'
+import {Mylist} from './pages/mylist/Mylist'
+import { ListContext, ListProvider } from './Context/ListContext'
 const App = () => {
   const navigate=useNavigate()
   useEffect(()=>
@@ -26,13 +29,20 @@ const App = () => {
   })
 
   },[])
+  console.log("app rendering");
+  
   return (
     <div>
+      <ToastContainer theme='dark' />
+      {console.log("before context wrapper")}
+      <ListProvider>
       <Routes>
-        <Route path='/' element={<Home />}/>
+             <Route path='/' element={<Home />}/>
            <Route path='/login' element={<Login />}/>
            <Route path='/player/:id' element={<Player />}></Route>
+           <Route path='/mylist' element={<Mylist />}></Route>
       </Routes>
+      </ListProvider>
     </div>
   )
 }

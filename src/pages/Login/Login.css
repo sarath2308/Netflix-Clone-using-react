@@ -86,3 +86,31 @@
     font-weight:500;
     cursor:pointer;
 }
+.error-msg
+{
+    color: #93191f;
+    font-size: smaller;
+}
+.login-spinner
+{
+    width:100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-spinner img
+{
+    width:60px;
+}
+@media (max-width:500px)
+{
+    .login{
+        padding: 15px 5%;
+    }
+    .login-form
+    {
+        padding: 20px;
+        margin-top:30px;
+    }
+}

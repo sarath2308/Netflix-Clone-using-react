@@ -1,34 +1,55 @@
-.titleCard{
+
+.titleCard {
     margin-top: 50px;
     margin-bottom: 30px;
 }
-.titleCard h2{
-    margin-bottom:8px ;
-
+.titleCard h2 {
+    margin-bottom: 8px;
 }
-.card-list
-{
+.card-list {
     display: flex;
-    gap:10px;
-    overflow-x:scroll ;
-
+    gap: 10px;
+    overflow-x: scroll;
 }
-.card-list::-webkit-scrollbar
-{
+.card-list::-webkit-scrollbar {
     display: none;
 }
-
-.card-list img{
-    width:240px;
+.card-list img {
+    width: 240px;
     border-radius: 4px;
     cursor: pointer;
 }
-.card-list .card{
+.card-list .card {
     position: relative;
 }
-.card-list .card p{
+.card-list .card p {
     position: absolute;
     bottom: 10px;
-    right:10px;
-
+    right: 10px;
+}
+@media (max-width: 800px) {
+    .titleCard {
+        margin-top: 20px;
+        margin-bottom: 0;
+    }
+    .titleCard h2 {
+        font-size: 20px;
+    }
+    .card-list img {
+        width: 200px;
+    }
+    .card-list p {
+        font-size: 12px;
+    }
+}
+@media (max-width: 500px) {
+    .titleCard h2 {
+        font-size: 15px;
+    }
+    .card-list img {
+        width: 165px;
+    }
+    .card-list p {
+        font-size: 10px;
+    }
 }
