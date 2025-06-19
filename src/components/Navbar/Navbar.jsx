@@ -6,9 +6,12 @@ import bell from '../../assets/bell_icon.svg'
 import profile from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
 import firebase from '../../firebase'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const navRef=useRef()
+
+  const navigate=useNavigate()
 
  useEffect(() => {
     const handleScroll = () => {
@@ -32,11 +35,11 @@ const Navbar = () => {
         <div className='navbar-left'>
       <img src={logo}></img>
       <ul>
-<li>Home</li>
+<li onClick={()=>navigate('/')}>Home</li>
 <li>Tv shows</li>
 <li>Movies</li>
 <li>New & Popular</li>
-<li>My List</li>
+<li onClick={()=>navigate('/mylist')}>My List</li>
 <li>Browse By Language</li>
       </ul>
         </div>

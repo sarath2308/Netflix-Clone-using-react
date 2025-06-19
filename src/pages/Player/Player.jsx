@@ -17,7 +17,9 @@ export const Player = () => {
     name:'',
     key:'',
     published_at:'',
-    typeof:''
+    typeof:'',
+    sid:'',
+    img_url:''
   })
 
   const [isInList, setIsInList] = useState(false);
@@ -32,25 +34,48 @@ export const Player = () => {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YWMwNmI0NTM0MGRhYzZlZDc0YTkxMzFiNDM3ZWY2MyIsIm5iZiI6MTc1MDE3MjE2Mi4zOTgwMDAyLCJzdWIiOiI2ODUxODIwMjAxYmNjZjBkYTg2YWViMTMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Xb8km8sEA0eP8LHjjEO5i2wEn7EloUX_sBHtPZNq6p8'
   }
 };
+const options_img = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YWMwNmI0NTM0MGRhYzZlZDc0YTkxMzFiNDM3ZWY2MyIsIm5iZiI6MTc1MDE3MjE2Mi4zOTgwMDAyLCJzdWIiOiI2ODUxODIwMjAxYmNjZjBkYTg2YWViMTMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Xb8km8sEA0eP8LHjjEO5i2wEn7EloUX_sBHtPZNq6p8'
+  }
+};
+
 
 useEffect(() => {
   const exists = myList.some(movie => movie.id === apiData.id);
   setIsInList(exists);
 }, [myList, apiData]);
-//useEffect
-useEffect(()=>
-{
-fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
-  .then(res => res.json())
-  .then(res => setApiData(res.results[0]))
-  .catch(err => console.error(err));
- 
-},[id])
+
+useEffect(() => {
+  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
+    .then(res => res.json())
+    .then(res => {
+      const data = res.results[0];
+      setApiData(prev => ({ ...prev, ...data, sid: res.id }));
+    })
+    .catch(console.error);
+}, [id]);
+
+
+useEffect(() => {
+  if (!apiData.sid) return;
+
+  fetch(`https://api.themoviedb.org/3/movie/${apiData.sid}/images`, options_img)
+    .then(res => res.json())
+    .then(res => {
+      setApiData(prev => ({ ...prev, img_url: res.backdrops[0]?.file_path }));
+    })
+    .catch(console.error);
+}, [apiData.sid]);
+
 
 useEffect(()=>
 {
  localStorage.setItem('myList',JSON.stringify(myList))
 },[isInList])
+
 
 const toggleWatchList = () => {
   if (isInList) {
@@ -62,7 +87,6 @@ const toggleWatchList = () => {
   }
   setIsInList(!isInList);
 };
-
   return (
     <>
       <div className='player'>
