@@ -38,6 +38,7 @@
     padding: 8px;
     display: inline-flex;
     align-items: center;
+    color:black;
     gap: 10px;
     font-size: 15px;
     font-weight:600;
