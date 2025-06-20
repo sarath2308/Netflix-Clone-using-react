@@ -2,7 +2,7 @@
 A fully responsive Netflix UI clone built using React and Firebase. It mimics core features of Netflix like user authentication, movie listing, banner previews, and watchlists.
 
 🚀 Tech Stack
-Frontend: React, CSS, Axios
+Frontend: React, CSS
 
 Backend / Auth: Firebase Authentication
 
